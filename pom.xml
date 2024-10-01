@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Define the parent POM -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.m1tron</groupId>
+    <version>1.0</version>
+
+    <!-- Project artifact ID -->
+    <artifactId>fractal</artifactId>
+    <!-- Project packaging type -->
+    <packaging>jar</packaging>
+    <!-- Project name -->
+    <name>fractal</name>
+    <!-- Project URL -->
+    <url>${project.artifactId}</url>
+    <!-- Project description -->
+    <description>
+        A fractal maker.
+    </description>
+
+    <!-- Reporting plugins configuration -->
+    <reporting>
+        <plugins>
+            <!-- JavaDoc plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <!-- Surefire report plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <!-- Stating path to JavaDoc output, so that pages link correctly -->
+    <distributionManagement>
+        <site>
+            <id>${artifactId}-site</id>
+            <url>file://${artifactId}/target/site/</url>
+        </site>
+    </distributionManagement>
+
+    <!-- Build configuration -->
+    <build>
+        <plugins>
+            <!-- Maven Surefire Plugin to run JUnit 5 tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source> <!-- Java 17 source compatibility -->
+                    <target>17</target> <!-- Java 17 target compatibility -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- Add classpath to the manifest -->
+                            <addClasspath>true</addClasspath>
+                            <!-- Set classpath prefix -->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- Set main class for the executable JAR -->
+                            <mainClass>com.m1tron.fractal.Fractal</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!-- Your other dependencies -->
+
+        <!-- JUnit 5 (JUnit Jupiter API and Engine) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
