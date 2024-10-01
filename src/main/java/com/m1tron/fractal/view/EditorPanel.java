@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3.view;
+package com.m1tron.fractal.view;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -18,17 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.dt181g.laboration_3.view.ViewConfig.INIT_COORD_SQUARES_X;
-import static com.dt181g.laboration_3.view.ViewConfig.INIT_COORD_SQUARES_Y;
-import static com.dt181g.laboration_3.view.ViewConfig.INIT_OFFSET_RECURSIVE_X;
-import static com.dt181g.laboration_3.view.ViewConfig.INIT_OFFSET_RECURSIVE_Y;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_BG;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_FG;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_HEIGHT;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_SQUARE_LENGTH;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_WIDTH;
-import static com.dt181g.laboration_3.view.ViewConfig.RECURSIVE_ENDPOINT_OFFSET;
-
 /**
  * A component with mouse operations for adding and removing squares.
  * This sample class is built upon to facilitate building of polygons.
@@ -40,12 +29,14 @@ import static com.dt181g.laboration_3.view.ViewConfig.RECURSIVE_ENDPOINT_OFFSET;
  */
 public class EditorPanel extends JPanel
 {
-    private static final int SQUARE_LENGTH = MOUSE_PANEL_SQUARE_LENGTH;
-    private static final int WIDTH = MOUSE_PANEL_WIDTH;
-    private static final int HEIGHT = MOUSE_PANEL_HEIGHT;
+    private static final int SQUARE_LENGTH = ViewConfig.MOUSE_PANEL_SQUARE_LENGTH;
+    private static final int WIDTH = ViewConfig.MOUSE_PANEL_WIDTH;
+    private static final int HEIGHT = ViewConfig.MOUSE_PANEL_HEIGHT;
     private ArrayList<Rectangle2D> squares;
     private Rectangle2D current; // the square containing the mouse cursor
     private boolean isPolygon; // NEW. Defines panel usage, true = polygon, false = recursive blueprint
+
+    public Runnable mouseDragCallback = null;
 
     /**
      * Editor panel setup.
@@ -55,8 +46,8 @@ public class EditorPanel extends JPanel
     public EditorPanel(Boolean isPoly, String name)
     {
         add(new JLabel(name));
-        setBackground(MOUSE_PANEL_BG);
-        setForeground(MOUSE_PANEL_FG);
+        setBackground(ViewConfig.MOUSE_PANEL_BG);
+        setForeground(ViewConfig.MOUSE_PANEL_FG);
 
         squares = new ArrayList<>();
 
@@ -85,12 +76,12 @@ public class EditorPanel extends JPanel
      */
     private void initSquares() {
         if (isPolygon) {
-            IntStream.range(0, INIT_COORD_SQUARES_X.length).forEach(i ->
-                    add(new Point2D.Float(INIT_COORD_SQUARES_X[i], INIT_COORD_SQUARES_Y[i])));
+            IntStream.range(0, ViewConfig.INIT_COORD_SQUARES_X.length).forEach(i ->
+                    add(new Point2D.Float(ViewConfig.INIT_COORD_SQUARES_X[i], ViewConfig.INIT_COORD_SQUARES_Y[i])));
 
         } else {
-            for (int i = 0; i < INIT_OFFSET_RECURSIVE_X.length; i++) {
-                add(new Point2D.Float(WIDTH/2 + INIT_OFFSET_RECURSIVE_X[i], HEIGHT/2 + INIT_OFFSET_RECURSIVE_Y[i]));
+            for (int i = 0; i < ViewConfig.INIT_OFFSET_RECURSIVE_X.length; i++) {
+                add(new Point2D.Float(WIDTH/2 + ViewConfig.INIT_OFFSET_RECURSIVE_X[i], HEIGHT/2 + ViewConfig.INIT_OFFSET_RECURSIVE_Y[i]));
             }
         }
     }
@@ -114,9 +105,9 @@ public class EditorPanel extends JPanel
         List<Point2D.Float> temp = new ArrayList<>();
         var centerX = WIDTH/2;
         var centerY = HEIGHT/2;
-        temp.add(new Point2D.Float((centerX-RECURSIVE_ENDPOINT_OFFSET), centerY));
+        temp.add(new Point2D.Float((centerX- ViewConfig.RECURSIVE_ENDPOINT_OFFSET), centerY));
         squares.stream().map( s -> new Point2D.Float((float) s.getCenterX(), (float) s.getCenterY()) ).forEach(point -> temp.add(point));
-        temp.add(new Point2D.Float((centerX+RECURSIVE_ENDPOINT_OFFSET), centerY));
+        temp.add(new Point2D.Float((centerX+ ViewConfig.RECURSIVE_ENDPOINT_OFFSET), centerY));
         return temp;
     }
 
@@ -230,6 +221,10 @@ public class EditorPanel extends JPanel
         }
     }
 
+    public void setMouseDragCallback(Runnable r) {
+        mouseDragCallback = r;
+    }
+
     private class MouseMotionHandler implements MouseMotionListener
     {
         /**
@@ -238,7 +233,7 @@ public class EditorPanel extends JPanel
          */
         public void mouseMoved(MouseEvent event)
         {
-            // set the mouse cursor to cross hairs if it is inside a rectangle
+            // set the mouse cursor to cross-hairs if it is inside a rectangle
 
             if (find(event.getPoint()) == null) setCursor(Cursor.getDefaultCursor());
             else setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
@@ -258,7 +253,12 @@ public class EditorPanel extends JPanel
                 // drag the current rectangle to center it at (x, y)
                 current.setFrame(x - SQUARE_LENGTH / 2, y - SQUARE_LENGTH / 2, SQUARE_LENGTH, SQUARE_LENGTH);
                 repaint();
+                if (mouseDragCallback != null) {
+                    mouseDragCallback.run();
+                }
             }
         }
+
+
     }
 }

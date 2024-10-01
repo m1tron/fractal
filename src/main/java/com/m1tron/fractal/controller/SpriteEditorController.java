@@ -1,7 +1,7 @@
-package com.dt181g.laboration_3.controller;
+package com.m1tron.fractal.controller;
 
-import com.dt181g.laboration_3.model.Model;
-import com.dt181g.laboration_3.view.EditorView;
+import com.m1tron.fractal.model.Model;
+import com.m1tron.fractal.view.EditorView;
 
 import javax.swing.WindowConstants;
 
@@ -26,8 +26,8 @@ public class SpriteEditorController {
         /* View controller hooks */
         view.getStoreButton().addActionListener( (e)-> saveAction());
         view.getLoadButton().addActionListener( (e)-> loadAction());
-        view.getPolyButton().addActionListener( (e)-> polyAction());
-        view.getRecursiveButton().addActionListener( (e)-> recursiveAction());
+        view.getPolyBlueprintPanel().setMouseDragCallback(this::polyAction);
+        view.getRecursiveBlueprintPanel().setMouseDragCallback(this::recursiveAction);
 
         /* Push default figure to render */
         polyAction();

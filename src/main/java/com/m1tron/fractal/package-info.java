@@ -15,4 +15,4 @@
  *
  *  The hope is that this program can be utilized for sprite construction in the upcoming project.
  */
-package com.dt181g.laboration_3;
+package com.m1tron.fractal;

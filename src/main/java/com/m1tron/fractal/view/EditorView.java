@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3.view;
+package com.m1tron.fractal.view;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,16 +12,6 @@ import java.awt.Color;
 import java.awt.Polygon;
 import java.awt.geom.Point2D;
 import java.util.List;
-
-import static com.dt181g.laboration_3.view.ViewConfig.LOAD_BUTTON_STRING;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_BG;
-import static com.dt181g.laboration_3.view.ViewConfig.MOUSE_PANEL_FG;
-import static com.dt181g.laboration_3.view.ViewConfig.POLY_BUTTON_STRING;
-import static com.dt181g.laboration_3.view.ViewConfig.POLY_PANEL_STRING;
-import static com.dt181g.laboration_3.view.ViewConfig.RECURSIVE_BUTTON_STRING;
-import static com.dt181g.laboration_3.view.ViewConfig.RECURSIVE_PANEL_STRING;
-import static com.dt181g.laboration_3.view.ViewConfig.SIDE_PANEL_FONT;
-import static com.dt181g.laboration_3.view.ViewConfig.STORE_BUTTON_STRING;
 
 /**
  * The editor view present the user with two editor panels where the user can create a blueprint for a sprite.
@@ -47,13 +37,13 @@ public class EditorView extends JFrame {
     private BlackPaddedPanel sidepanel;
 
     /* Sub panel reference */
-    private EditorPanel polyPanel = new EditorPanel(true, POLY_PANEL_STRING);
-    private JButton polyButton = new JButton(POLY_BUTTON_STRING);
-    private EditorPanel recursivePanel = new EditorPanel(false, RECURSIVE_PANEL_STRING);
-    private JButton recursiveButton = new JButton(RECURSIVE_BUTTON_STRING);
+    private EditorPanel polyPanel = new EditorPanel(true, ViewConfig.POLY_PANEL_STRING);
+    private JButton polyButton = new JButton(ViewConfig.POLY_BUTTON_STRING);
+    private EditorPanel recursivePanel = new EditorPanel(false, ViewConfig.RECURSIVE_PANEL_STRING);
+    private JButton recursiveButton = new JButton(ViewConfig.RECURSIVE_BUTTON_STRING);
     private JPanel buttonPanel = new BlackPaddedPanel();
-    private JButton storeButton = new JButton(STORE_BUTTON_STRING);
-    private JButton loadButton = new JButton(LOAD_BUTTON_STRING);
+    private JButton storeButton = new JButton(ViewConfig.STORE_BUTTON_STRING);
+    private JButton loadButton = new JButton(ViewConfig.LOAD_BUTTON_STRING);
 
 
     /**
@@ -77,9 +67,9 @@ public class EditorView extends JFrame {
         sidepanel = new BlackPaddedPanel();
         mainPanel.add(sidepanel, BorderLayout.EAST);
 
-        sidepanel.setForeground(MOUSE_PANEL_FG);
-        sidepanel.setFont(SIDE_PANEL_FONT);
-        sidepanel.setBackground(MOUSE_PANEL_BG);
+        sidepanel.setForeground(ViewConfig.MOUSE_PANEL_FG);
+        sidepanel.setFont(ViewConfig.SIDE_PANEL_FONT);
+        sidepanel.setBackground(ViewConfig.MOUSE_PANEL_BG);
         sidepanel.setBorder(new EtchedBorder());
         sidepanel.setLayout(new BoxLayout(sidepanel, BoxLayout.Y_AXIS));
 
@@ -146,6 +136,22 @@ public class EditorView extends JFrame {
      */
     public JButton getRecursiveButton() {
         return recursiveButton;
+    }
+
+    /**
+     * Getter for set recursive button.
+     * @return returns set recursive button.
+     */
+    public EditorPanel getRecursiveBlueprintPanel() {
+        return recursivePanel;
+    }
+
+    /**
+     * Getter for set recursive button.
+     * @return returns set recursive button.
+     */
+    public EditorPanel getPolyBlueprintPanel() {
+        return polyPanel;
     }
 
     /**

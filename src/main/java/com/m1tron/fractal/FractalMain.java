@@ -1,6 +1,6 @@
-package com.dt181g.laboration_3;
+package com.m1tron.fractal;
 
-import com.dt181g.laboration_3.controller.SpriteEditorController;
+import com.m1tron.fractal.controller.SpriteEditorController;
 
 import javax.swing.SwingUtilities;
 

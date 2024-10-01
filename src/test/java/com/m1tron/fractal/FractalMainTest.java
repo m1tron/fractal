@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3;
+package com.m1tron.fractal;
 
 import org.junit.jupiter.api.Test;
 

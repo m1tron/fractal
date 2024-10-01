@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3.model;
+package com.m1tron.fractal.model;
 
 import java.awt.Polygon;
 import java.awt.geom.Point2D;

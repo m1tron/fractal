@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3.view;
+package com.m1tron.fractal.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,7 @@ public final class ViewConfig {
     public static final Color RENDER_PANEL_COLOR = Color.BLUE;
     public static final int RENDER_PANEL_WIDTH = 800;
     public static final int RENDER_PANEL_HEIGHT = 800;
-    public static final int RECURSIVE_DEPTH = 3;
+    public static final int RECURSIVE_DEPTH = 5;
 
     /* Constants for SidePanel */
     public static final Color SIDE_PANEL_FG = Color.YELLOW;

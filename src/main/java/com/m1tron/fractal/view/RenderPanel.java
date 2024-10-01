@@ -1,4 +1,4 @@
-package com.dt181g.laboration_3.view;
+package com.m1tron.fractal.view;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
