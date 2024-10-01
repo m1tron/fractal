@@ -1,4 +1,4 @@
-# Laboration 3
+# Fractal
 
 ## Environment & Tools
 
