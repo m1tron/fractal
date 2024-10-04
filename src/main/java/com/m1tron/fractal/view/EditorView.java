@@ -22,12 +22,12 @@ import java.util.List;
 public class EditorView extends JFrame {
 
     private JLabel infoLabel =
-            new JLabel("<html><h2>This is a sprite editor that uses a polygon and a recursive pattern to draw a sprite </h2>" +
-                    "<h3>A default base polygon and base recursive pattern have already been set." +
-                    "<br>To edit the sprite you can make changes in the editor panels to the left.</h3> " +
-                    "<br> - More vertices might be added by clicking anywhere in an editor panel to add a square " +
-                    "<br> - Squares can be removed by double-clicking" +
-                    "<br> - Squares can also dragged to new locations" +
+            new JLabel("<html><h2>Fractal Sprite Maker 2000 Mk2 </h2>" +
+                    "<h3>Default blueprints are already set in the right panel." +
+                    "<br>To edit the sprite you can interact with blueprints.</h3> " +
+                    "<br> - Right-click adds a vertex." +
+                    "<br> - Double-clicking a Square removes it." +
+                    "<br> - Drag to move squares." +
             "<br> - Use Save/Load-buttons to read or store creations to current directory</html>");
 
     /* Panel references */

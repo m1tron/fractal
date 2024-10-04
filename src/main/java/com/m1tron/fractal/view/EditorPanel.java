@@ -223,7 +223,7 @@ public class EditorPanel extends JPanel
          */
         public void mouseClicked(MouseEvent event)
         {
-            // remove the current square if double clicked
+            // remove the current square if double-clicked
             current = find(event.getPoint());
             if (current != null && event.getClickCount() >= 2) remove(current);
 
@@ -269,7 +269,5 @@ public class EditorPanel extends JPanel
                 }
             }
         }
-
-
     }
 }

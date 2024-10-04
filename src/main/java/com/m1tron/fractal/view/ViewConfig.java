@@ -38,7 +38,7 @@ public final class ViewConfig {
     public static final Color MOUSE_PANEL_BG = SIDE_PANEL_BG;
     public static final int MOUSE_PANEL_WIDTH = 400;
     public static final int MOUSE_PANEL_HEIGHT = 400;
-    public static final int MOUSE_PANEL_SQUARE_LENGTH = 10;
+    public static final int MOUSE_PANEL_SQUARE_LENGTH = 15;
 
     public static final int[] INIT_COORD_SQUARES_X = {100, 100, 300, 300};
     public static final int[] INIT_COORD_SQUARES_Y = {100, 300, 300, 100};
