@@ -29,6 +29,10 @@ public class SpriteEditorController {
         view.getPolyBlueprintPanel().setMouseDragCallback(this::polyAction);
         view.getRecursiveBlueprintPanel().setMouseDragCallback(this::recursiveAction);
 
+        /* Reset Button hooks */
+        view.getRecursiveButton().addActionListener( (e)-> view.getRecursiveBlueprintPanel().initSquares());
+        view.getPolyButton().addActionListener( (e)-> view.getPolyBlueprintPanel().initSquares());
+
         /* Push default figure to render */
         polyAction();
         recursiveAction();

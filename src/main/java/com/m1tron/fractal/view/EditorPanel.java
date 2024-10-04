@@ -49,16 +49,15 @@ public class EditorPanel extends JPanel
         setBackground(ViewConfig.MOUSE_PANEL_BG);
         setForeground(ViewConfig.MOUSE_PANEL_FG);
 
-        squares = new ArrayList<>();
 
-        current = null;
-        isPolygon = isPoly;
-        initSquares();
 
         addMouseListener(new MouseHandler());
         addMouseMotionListener(new MouseMotionHandler());
 
         setBorder(BorderFactory.createEtchedBorder());
+
+        isPolygon = isPoly;
+        initSquares();
     }
 
     /**
@@ -73,8 +72,11 @@ public class EditorPanel extends JPanel
 
     /**
      * Added method to insert some start values.
+     * Also used for resetting squares.
      */
-    private void initSquares() {
+    public void initSquares() {
+        current = null;
+        squares = new ArrayList<>();
         if (isPolygon) {
             IntStream.range(0, ViewConfig.INIT_COORD_SQUARES_X.length).forEach(i ->
                     add(new Point2D.Float(ViewConfig.INIT_COORD_SQUARES_X[i], ViewConfig.INIT_COORD_SQUARES_Y[i])));
@@ -83,6 +85,9 @@ public class EditorPanel extends JPanel
             for (int i = 0; i < ViewConfig.INIT_OFFSET_RECURSIVE_X.length; i++) {
                 add(new Point2D.Float(WIDTH/2 + ViewConfig.INIT_OFFSET_RECURSIVE_X[i], HEIGHT/2 + ViewConfig.INIT_OFFSET_RECURSIVE_Y[i]));
             }
+        }
+        if(mouseDragCallback != null) {
+            mouseDragCallback.run();
         }
     }
 
@@ -199,7 +204,7 @@ public class EditorPanel extends JPanel
     private class MouseHandler extends MouseAdapter
     {
         /**
-         * Not edited.
+         * Not edited. (but added callback)
          * @param event
          */
         public void mousePressed(MouseEvent event)
@@ -207,10 +212,13 @@ public class EditorPanel extends JPanel
             // add a new square if the cursor isn't inside a square
             current = find(event.getPoint());
             if (current == null) add(event.getPoint());
+            if (mouseDragCallback != null) {
+                mouseDragCallback.run();
+            }
         }
 
         /**
-         * Not edited.
+         * Not edited. (but added callback)
          * @param event
          */
         public void mouseClicked(MouseEvent event)
@@ -218,6 +226,10 @@ public class EditorPanel extends JPanel
             // remove the current square if double clicked
             current = find(event.getPoint());
             if (current != null && event.getClickCount() >= 2) remove(current);
+
+            if (mouseDragCallback != null) {
+                mouseDragCallback.run();
+            }
         }
     }
 
@@ -234,13 +246,12 @@ public class EditorPanel extends JPanel
         public void mouseMoved(MouseEvent event)
         {
             // set the mouse cursor to cross-hairs if it is inside a rectangle
-
             if (find(event.getPoint()) == null) setCursor(Cursor.getDefaultCursor());
             else setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
 
         /**
-         * Not edited.
+         * Barely edited.
          * @param event
          */
         public void mouseDragged(MouseEvent event)
