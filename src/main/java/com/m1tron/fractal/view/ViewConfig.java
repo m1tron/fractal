@@ -25,11 +25,10 @@ public final class ViewConfig {
     public static final Font SIDE_PANEL_FONT = new Font("Courier New", Font.PLAIN, FONT_SIZE);
 
     /* Constants for SidePanel buttons */
-    public static final String POLY_BUTTON_STRING = "Set polygon";
-    public static final String RECURSIVE_BUTTON_STRING = "Set recursive";
+    public static final String POLY_BUTTON_STRING = "Reset polygon";
+    public static final String RECURSIVE_BUTTON_STRING = "Reset recursive";
     public static final String LOAD_BUTTON_STRING = "Load last sprite";
     public static final String STORE_BUTTON_STRING = "Store current sprite";
-
 
     /* Constants for MousePanel  */
     public static final String POLY_PANEL_STRING = "Base polygon";

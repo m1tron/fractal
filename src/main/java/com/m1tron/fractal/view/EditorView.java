@@ -28,7 +28,6 @@ public class EditorView extends JFrame {
                     "<br> - More vertices might be added by clicking anywhere in an editor panel to add a square " +
                     "<br> - Squares can be removed by double-clicking" +
                     "<br> - Squares can also dragged to new locations" +
-                    "<br> - Press 'set'-buttons when done editing" +
             "<br> - Use Save/Load-buttons to read or store creations to current directory</html>");
 
     /* Panel references */
